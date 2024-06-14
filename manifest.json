@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "AdAttack",
+  "version": "1.0.0",
+  "description": "「攻めの守り」を実現する、新時代の広告対策",
+  "icons": {
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  }
+}
