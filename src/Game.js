@@ -28,7 +28,7 @@ export class Game {
     console.log("loaded!");
     document.body.appendChild(this.canvas);
     const center = this.getCenterOfCanvas();
-    this.gameState.registerObject(new PlayerShip(center.x, center.y, 50, 50, 'blue', 100, 0));
+    this.gameState.registerObject(new PlayerShip(center.x, center.y, 50, 50, 'blue', 100, 0, 5));
     this.#render();
   }
 
@@ -40,7 +40,7 @@ export class Game {
     this.context.fillText(this.gameState.gameStatus, 20, 20);
     this.context.fillText("FPS: " + this.#calculateFPS(), 20, 40);
 
-    if(this.gameState.gameStatus === "playing") {
+    if (this.gameState.gameStatus === "playing") {
       this.gameState.getAllObjects().forEach(object => {
         // 更新処理
         object.update();
