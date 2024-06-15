@@ -1,4 +1,5 @@
 import { gameStatus } from "../constants/GameStatus.js";
+import { PlayerShip } from "../objects/entities/PlayerShip.js";
 
 export class GameState {
   constructor() {
@@ -40,6 +41,14 @@ export class GameState {
     }
 
     this._gameStatus = status;
+  }
+
+  getPlayerPosition() {
+    const player = this.getObjectByClass(PlayerShip);
+    return {
+      x: player.x,
+      y: player.y
+    };
   }
 
   update() {

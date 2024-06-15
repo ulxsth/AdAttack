@@ -1,7 +1,4 @@
 import { GameObject } from "./GameObject.js";
-import { GameState } from "../states/GameState.js";
-
-const gameState = GameState.getInstance();
 
 export class Entity extends GameObject {
   constructor(x, y, width, height, color, hp, direction, speed) {
@@ -13,7 +10,7 @@ export class Entity extends GameObject {
   damage(damage) {
     this.hp -= damage;
     if (this.hp <= 0) {
-      gameState.removeObject(this);
+      this.gameState.removeObject(this);
     }
   }
 }

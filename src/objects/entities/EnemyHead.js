@@ -48,6 +48,12 @@ export class EnemyHead extends GameObject {
     this.children.forEach((child) => {
       child.updatePosition(this.x, this.y);
     });
+    const playerPos = this.gameState.getPlayerPosition();
+    this.faceTo(playerPos.x, playerPos.y);
+  }
+
+  faceTo(x, y) {
+    this.direction = Math.atan2(y - this.y, x - this.x);
   }
 
   destroy() {
