@@ -1,4 +1,5 @@
 import { GameState } from "./states/GameState.js";
+import { InteractionState } from "./states/InteractionState.js";
 
 export class Game {
   constructor() {
@@ -11,6 +12,7 @@ export class Game {
     this.context = this.canvas.getContext('2d');
 
     this.gameState = new GameState();
+    this.interactionState = new InteractionState();
   }
 
   init() {
