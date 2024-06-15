@@ -9,6 +9,7 @@ export class EnemyPart extends Entity {
     super(0, 0, width, height, color, hp, direction, speed);
     this.offsetX = offsetX;
     this.offsetY = offsetY;
+    this.shootIntervalId = null;
   }
 
   updatePosition(parentX, parentY) {
