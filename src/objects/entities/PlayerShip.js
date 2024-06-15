@@ -2,8 +2,8 @@ import { Entity } from "../Entity.js";
 
 
 export class PlayerShip extends Entity {
-  constructor(x, y, width, height, color, hp, direction) {
-    super(x, y, width, height, color, hp, direction);
+  constructor(x, y, width, height, color, hp, direction, speed) {
+    super(x, y, width, height, color, hp, direction, speed);
   }
 
   update() {
@@ -11,19 +11,17 @@ export class PlayerShip extends Entity {
     const flags = this.interactionState.getAllFlags();
 
     // 移動
-    if (!this.isFocusing) {
-      if (flags.up && this.y - PLAYER_SPEED >= 0) {
-        this.y -= PLAYER_SPEED;
-      }
-      if (flags.left && this.x - PLAYER_SPEED >= 0) {
-        this.x -= PLAYER_SPEED;
-      }
-      if (flags.down && this.y + PLAYER_SPEED + PLAYER_SHIP_HEIGHT <= canvasHeight) {
-        this.y += PLAYER_SPEED;
-      }
-      if (flags.right && this.x + PLAYER_SPEED + PLAYER_SHIP_WIDTH <= canvasWidth) {
-        this.x += PLAYER_SPEED;
-      }
+    if (flags.up && this.y - this.speed >= 0) {
+      this.y -= this.speed;
+    }
+    if (flags.left && this.x - this.speed >= 0) {
+      this.x -= this.speed;
+    }
+    if (flags.down && this.y + this.speed + this.height <= canvasHeight) {
+      this.y += this.speed;
+    }
+    if (flags.right && this.x + this.speed + this.width <= canvasWidth) {
+      this.x += this.speed;
     }
   }
 }
