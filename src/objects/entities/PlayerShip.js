@@ -1,9 +1,5 @@
 import { Entity } from "../Entity.js";
-import { Game } from "../../Game.js";
-import { InteractionState } from "../../states/InteractionState.js";
 
-const game = Game.getInstance();
-const interactionState = InteractionState.getInstance();
 
 export class PlayerShip extends Entity {
   constructor(x, y, width, height, color, hp, direction) {
@@ -11,8 +7,8 @@ export class PlayerShip extends Entity {
   }
 
   update() {
-    const { width: canvasWidth, height: canvasHeight } = game.getCenterOfCanvas();
-    const flags = interactionState.getAllFlags();
+    const { width: canvasWidth, height: canvasHeight } = this.game.getCenterOfCanvas();
+    const flags = this.interactionState.getAllFlags();
 
     // 移動
     if (!this.isFocusing) {

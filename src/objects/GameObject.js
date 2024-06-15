@@ -1,3 +1,7 @@
+import { Game } from "../Game.js";
+import { GameState } from "../states/GameState.js";
+import { InteractionState } from "../states/InteractionState.js";
+
 export class GameObject {
   constructor(x, y, width, height, color, direction) {
     this.x = x;
@@ -6,6 +10,11 @@ export class GameObject {
     this.height = height;
     this.color = color;
     this.direction = direction;
+
+    // 各インスタンスへの参照を保持
+    this.game = Game.getInstance();
+    this.gameState = GameState.getInstance();
+    this.interactionState = InteractionState.getInstance();
   }
 
   update() {}
