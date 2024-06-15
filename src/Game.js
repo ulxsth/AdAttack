@@ -1,7 +1,8 @@
 import { GameState } from "./states/GameState.js";
 import { InteractionState } from "./states/InteractionState.js";
 import { PlayerShip } from "./objects/entities/PlayerShip.js";
-import { EnemyHead } from "./objects/entities/EnemyHead.js";
+import { LeftEnemyHead } from "./objects/entities/enemies/LeftEnemyHead.js";
+import { RightEnemyHead } from "./objects/entities/enemies/RightEnemyHead.js";
 import { EnemyPart } from "./objects/entities/EnemyPart.js";
 import { gameStatus } from "./constants/GameStatus.js";
 
@@ -36,21 +37,36 @@ export class Game {
     );
 
     // fot test: add enemy
-    const createEnemyAt = (x, y) => {
-      const enemyHead = new EnemyHead(x, y, 10);
-      this.gameState.registerObject(enemyHead);
+    const createEnemy = () => {
+      const { width: canvasWidth, height: canvasHeight } = this.getCanvasSize();
+      const direction = Math.random() > 0.5 ? 'left' : 'right';
+      const y = Math.random() * canvasHeight;
 
-      const enemyBody = new EnemyPart(50, 50, 'red', 100, 0, 15, 0, 0);
-      enemyHead.registerChild(enemyBody);
-      this.gameState.registerObject(enemyBody);
-
-      const enemyCloseBtn = new EnemyPart(15, 15, 'black', 100, 0, 15, 40, -5);
-      enemyHead.registerChild(enemyCloseBtn);
-      this.gameState.registerObject(enemyCloseBtn);
+      if (direction === 'left') {
+        const targetX = canvasWidth / 5;
+        const enemyHead = new LeftEnemyHead(y, targetX, 1);
+        const enemyBody = new EnemyPart(50, 50, "red", 100, 0, 15, 0, 0);
+        const enemyCloseBtn = new EnemyPart(10, 10, "black", 100, 0, 15, 45, -5);
+        enemyHead.registerChild(enemyBody);
+        enemyHead.registerChild(enemyCloseBtn);
+        this.gameState.registerObject(enemyHead);
+        this.gameState.registerObject(enemyBody);
+        this.gameState.registerObject(enemyCloseBtn);
+      } else {
+        const targetX = canvasWidth * 4 / 5;
+        const enemyHead = new RightEnemyHead(y, targetX, 1);
+        const enemyBody = new EnemyPart(50, 50, "red", 100, 0, 15, 0, 0);
+        const enemyCloseBtn = new EnemyPart(10, 10, "black", 100, 0, 15, 45, -5);
+        enemyHead.registerChild(enemyBody);
+        enemyHead.registerChild(enemyCloseBtn);
+        this.gameState.registerObject(enemyHead);
+        this.gameState.registerObject(enemyBody);
+        this.gameState.registerObject(enemyCloseBtn);
+      }
     };
 
     for (let i = 0; i < 3; i++) {
-      createEnemyAt(Math.random() * (window.innerWidth - 50), Math.random() * (window.innerHeight - 50));
+      createEnemy();
     }
 
     this.#render();

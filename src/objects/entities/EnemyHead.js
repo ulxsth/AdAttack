@@ -47,11 +47,15 @@ export class EnemyHead extends Entity {
   }
 
   update() {
+    this.updateChildren();
+    const playerPos = this.gameState.getPlayerPosition();
+    this.faceTo(playerPos.x, playerPos.y);
+  }
+
+  updateChildren() {
     this.children.forEach((child) => {
       child.updatePosition(this.x, this.y);
     });
-    const playerPos = this.gameState.getPlayerPosition();
-    this.faceTo(playerPos.x, playerPos.y);
   }
 
   faceTo(x, y) {
