@@ -2,7 +2,7 @@ import { GameState } from "./states/GameState.js";
 import { InteractionState } from "./states/InteractionState.js";
 import { PlayerShip } from "./objects/entities/PlayerShip.js";
 import { EnemyHead } from "./objects/entities/EnemyHead.js";
-import { EnemyChild } from "./objects/entities/EnemyChild.js";
+import { EnemyPart } from "./objects/entities/EnemyPart.js";
 
 export class Game {
   // TODO: private にしたい
@@ -39,11 +39,11 @@ export class Game {
       const enemyHead = new EnemyHead(x, y);
       this.gameState.registerObject(enemyHead);
 
-      const enemyBody = new EnemyChild(50, 50, 'red', 100, 0, 15, 0, 0);
+      const enemyBody = new EnemyPart(50, 50, 'red', 100, 0, 15, 0, 0);
       enemyHead.registerChild(enemyBody);
       this.gameState.registerObject(enemyBody);
 
-      const enemyCloseBtn = new EnemyChild(15, 15, 'black', 100, 0, 15, 40, -5);
+      const enemyCloseBtn = new EnemyPart(15, 15, 'black', 100, 0, 15, 40, -5);
       enemyHead.registerChild(enemyCloseBtn);
       this.gameState.registerObject(enemyCloseBtn);
     };
