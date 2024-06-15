@@ -7,7 +7,7 @@ export class EnemyHead extends GameObject {
     this.children = [];
     this.shootIntervalId = setInterval(() => {
       this.shoot();
-    }, 200);
+    }, 300);
   }
 
   /**
@@ -40,7 +40,9 @@ export class EnemyHead extends GameObject {
    * 弾を発射する。
    */
   shoot() {
-    const bullet = new EnemyBullet(this.x, this.y, this.direction, 1);
+    const spread = Math.random() / Math.PI;
+    const direction = this.direction + spread;
+    const bullet = new EnemyBullet(this.x, this.y, direction);
     this.gameState.registerObject(bullet);
   }
 
