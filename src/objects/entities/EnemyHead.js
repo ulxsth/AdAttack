@@ -1,8 +1,8 @@
 import { GameObject } from "../GameObject.js";
 
 export class EnemyHead extends GameObject {
-  constructor() {
-    super(0, 0, 0, 0, "transparent", 0);
+  constructor(x, y) {
+    super(x, y, 0, 0, "transparent", 0);
     this.children = [];
   }
 
@@ -20,5 +20,11 @@ export class EnemyHead extends GameObject {
    */
   destroyChild(child) {
     this.children = this.children.filter((c) => c !== child);
+  }
+
+  update() {
+    this.children.forEach((child) => {
+      child.updatePosition(this.x, this.y);
+    });
   }
 }

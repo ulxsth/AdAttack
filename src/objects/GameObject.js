@@ -17,7 +17,7 @@ export class GameObject {
     this.interactionState = InteractionState.getInstance();
   }
 
-  update() {}
+  update() { }
 
   /**
    * 重なっている部分があるかを検査する。
@@ -41,5 +41,5 @@ export class GameObject {
     return isXOverlapped && isYOverlapped;
   };
 
-  destroy() {}
+  destroy() { }
 }

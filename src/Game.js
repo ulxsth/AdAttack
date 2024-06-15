@@ -35,16 +35,22 @@ export class Game {
     );
 
     // fot test: add enemy
-    const enemyHead = new EnemyHead(center.x, center.y);
-    this.gameState.registerObject(enemyHead);
+    const createEnemyAt = (x, y) => {
+      const enemyHead = new EnemyHead(x, y);
+      this.gameState.registerObject(enemyHead);
 
-    const enemyBody = new EnemyChild(center.x, center.y, 50, 50, 'red', 100, 0, 15);
-    enemyHead.registerChild(enemyBody);
-    this.gameState.registerObject(enemyBody);
+      const enemyBody = new EnemyChild(50, 50, 'red', 100, 0, 15, 0, 0);
+      enemyHead.registerChild(enemyBody);
+      this.gameState.registerObject(enemyBody);
 
-    const enemyCloseBtn = new EnemyChild(center.x + 50, center.y - 50, 50, 50, 'black', 100, 0, 15);
-    enemyHead.registerChild(enemyCloseBtn);
-    this.gameState.registerObject(enemyCloseBtn);
+      const enemyCloseBtn = new EnemyChild(15, 15, 'black', 100, 0, 15, 40, -5);
+      enemyHead.registerChild(enemyCloseBtn);
+      this.gameState.registerObject(enemyCloseBtn);
+    };
+
+    for (let i = 0; i < 3; i++) {
+      createEnemyAt(Math.random() * (window.innerWidth - 50), Math.random() * (window.innerHeight - 50));
+    }
 
     this.#render();
   }
