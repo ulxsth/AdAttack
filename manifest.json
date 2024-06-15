@@ -13,6 +13,9 @@
       ],
       "js": [
         "index.js"
+      ],
+      "css": [
+        "assets/styles/content.css"
       ]
     }
   ],
