@@ -5,6 +5,7 @@ import { LeftEnemyHead } from "./objects/entities/enemies/LeftEnemyHead.js";
 import { RightEnemyHead } from "./objects/entities/enemies/RightEnemyHead.js";
 import { EnemyPart } from "./objects/entities/EnemyPart.js";
 import { gameStatus } from "./constants/GameStatus.js";
+import { EnemyFactory } from "./objects/entities/EnemyFactory.js";
 
 export class Game {
   // TODO: private にしたい
@@ -36,15 +37,16 @@ export class Game {
       new PlayerShip(center.x, center.y, 50, 50, 'blue', 100, 0, 15)
     );
 
-    for (let i = 0; i < 3; i++) {
-      createEnemy();
-    }
-
+    const enemyFactory = EnemyFactory.getInstance();
+    enemyFactory.createSummonInterval(3, 3000);
     this.#render();
   }
 
   #draw() {
     if (this.gameState.gameStatus === gameStatus.gameover) {
+      const enemyFactory = EnemyFactory.getInstance();
+      enemyFactory.deleteSummonInterval();
+
       const center = this.getCenterOfCanvas();
       this.context.font = "120px serif";
       this.context.textAlign = "center";
