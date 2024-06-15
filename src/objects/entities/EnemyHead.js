@@ -1,5 +1,6 @@
 import { Entity } from "../Entity.js";
 import { EnemyBullet } from "../bullets/EnemyBullet.js";
+import { EnemyCloseBtn } from "./EnemyCloseBtn.js";
 
 export class EnemyHead extends Entity {
   constructor(x, y, speed) {
@@ -47,6 +48,13 @@ export class EnemyHead extends Entity {
   }
 
   update() {
+    const closeBtns = this.children.filter((child) => child instanceof EnemyCloseBtn);
+    console.log(closeBtns);
+    if (closeBtns.length === 0) {
+      this.destroy();
+      return;
+    }
+
     this.updateChildren();
     const playerPos = this.gameState.getPlayerPosition();
     this.faceTo(playerPos.x, playerPos.y);
