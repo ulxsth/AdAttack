@@ -1,3 +1,4 @@
+import { gameStatus } from "../../constants/GameStatus.js";
 import { Entity } from "../Entity.js";
 
 
@@ -23,5 +24,9 @@ export class PlayerShip extends Entity {
     if (flags.right && this.x + this.speed + this.width <= canvasWidth) {
       this.x += this.speed;
     }
+  }
+
+  destroy() {
+    this.gameState.gameStatus = gameStatus.gameover;
   }
 }

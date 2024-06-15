@@ -3,6 +3,7 @@ import { InteractionState } from "./states/InteractionState.js";
 import { PlayerShip } from "./objects/entities/PlayerShip.js";
 import { EnemyHead } from "./objects/entities/EnemyHead.js";
 import { EnemyPart } from "./objects/entities/EnemyPart.js";
+import { gameStatus } from "./constants/GameStatus.js";
 
 export class Game {
   // TODO: private にしたい
@@ -56,6 +57,15 @@ export class Game {
   }
 
   #draw() {
+    if (this.gameState.gameStatus === gameStatus.gameover) {
+      const center = this.getCenterOfCanvas();
+      this.context.font = "120px serif";
+      this.context.textAlign = "center";
+      this.context.fillStyle = "red";
+      this.context.fillText("Game Over", center.x, center.y);
+      return;
+    }
+
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);

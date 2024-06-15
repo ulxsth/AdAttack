@@ -1,4 +1,5 @@
 import { gameStatus } from "../constants/GameStatus.js";
+import { PlayerShip } from "../objects/entities/PlayerShip.js";
 
 export class GameState {
   constructor() {
@@ -25,8 +26,7 @@ export class GameState {
     this.objects.push(object);
   }
 
-  destroyObject(object) {
-    // TODO: 各オブジェクトのdestroyメソッドを呼び出す
+  removeObject(object) {
     this.objects = this.objects.filter(obj => obj !== object);
   }
 
@@ -40,6 +40,14 @@ export class GameState {
     }
 
     this._gameStatus = status;
+  }
+
+  getPlayerPosition() {
+    const player = this.getObjectByClass(PlayerShip);
+    return {
+      x: player.x,
+      y: player.y
+    };
   }
 
   update() {
