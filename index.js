@@ -5,8 +5,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     (async () => {
       const { Game } = await import(chrome.runtime.getURL('src/Game.js'));
       const game = Game.getInstance();
-      await registerAllEvent();
       game.init();
+
+      const canvas = document.getElementById('game');
+      await registerAllEvent(canvas);
     })()
   }
 });
@@ -23,14 +25,17 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   }
 });
 
-const registerAllEvent = async () => {
+const registerAllEvent = async (canvas) => {
   const { handleKeyDown } = await import(chrome.runtime.getURL('src/events/handleKeyDown.js'));
   const { handleKeyUp } = await import(chrome.runtime.getURL('src/events/handleKeyUp.js'));
+  const { handleCanvasClick } = await import(chrome.runtime.getURL('src/events/handleCanvasClick.js'));
   window.addEventListener('keydown', handleKeyDown);
   window.addEventListener('keyup', handleKeyUp);
+  canvas.addEventListener('click', handleCanvasClick);
 }
 
-const unregisterAllEvent = () => {
+const unregisterAllEvent = (canvas) => {
   window.removeEventListener('keydown', handleKeyDown);
   window.removeEventListener('keyup', handleKeyUp);
+  canvas.removeEventListener('click', handleCanvasClick);
 }

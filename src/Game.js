@@ -33,6 +33,8 @@ export class Game {
   }
 
   #draw() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     // for debug
