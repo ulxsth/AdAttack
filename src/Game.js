@@ -23,6 +23,11 @@ export class Game {
   _draw() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+    // for debug
+    this.context.font = "20px Arial";
+    this.context.fillStyle = "white";
+    this.context.fillText(this.gameState.gameStatus, 20, 20);
+
     this._render();
   }
 
