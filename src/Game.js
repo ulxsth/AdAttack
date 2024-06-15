@@ -1,6 +1,8 @@
 import { GameState } from "./states/GameState.js";
 import { InteractionState } from "./states/InteractionState.js";
 import { PlayerShip } from "./objects/entities/PlayerShip.js";
+import { EnemyHead } from "./objects/entities/EnemyHead.js";
+import { EnemyChild } from "./objects/entities/EnemyChild.js";
 
 export class Game {
   // TODO: private にしたい
@@ -28,7 +30,22 @@ export class Game {
     console.log("loaded!");
     document.body.appendChild(this.canvas);
     const center = this.getCenterOfCanvas();
-    this.gameState.registerObject(new PlayerShip(center.x, center.y, 50, 50, 'blue', 100, 0, 15));
+    this.gameState.registerObject(
+      new PlayerShip(center.x, center.y, 50, 50, 'blue', 100, 0, 15)
+    );
+
+    // fot test: add enemy
+    const enemyHead = new EnemyHead(center.x, center.y);
+    this.gameState.registerObject(enemyHead);
+
+    const enemyBody = new EnemyChild(center.x, center.y, 50, 50, 'red', 100, 0, 15);
+    enemyHead.registerChild(enemyBody);
+    this.gameState.registerObject(enemyBody);
+
+    const enemyCloseBtn = new EnemyChild(center.x + 50, center.y - 50, 50, 50, 'black', 100, 0, 15);
+    enemyHead.registerChild(enemyCloseBtn);
+    this.gameState.registerObject(enemyCloseBtn);
+
     this.#render();
   }
 
