@@ -31,4 +31,6 @@ export class GameObject {
 
     return isXOverlapped && isYOverlapped;
   };
+
+  destroy() {}
 }

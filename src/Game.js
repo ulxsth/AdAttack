@@ -27,6 +27,8 @@ export class Game {
     console.log("loaded!");
     document.body.appendChild(this.canvas);
 
+    this.gameState.addObject(new PlayerShip(100, 100));
+
     this.#render();
   }
 
@@ -37,6 +39,12 @@ export class Game {
     this.context.font = "20px Arial";
     this.context.fillText(this.gameState.gameStatus, 20, 20);
     this.context.fillText("FPS: " + this.#calculateFPS(), 20, 40);
+
+    if(this.gameState.gameStatus === "playing") {
+      this.gameState.getAllObjects().forEach(object => {
+        object.draw(this.context);
+      });
+    }
 
     this.#render();
   }
