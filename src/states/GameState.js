@@ -1,7 +1,9 @@
+import { gameStatus } from "../constants/GameStatus.js";
+
 export class GameState {
   constructor() {
     this.objects = [];
-    this.gameStatus = "playing";
+    this.gameStatus = gameStatus.playing;
   }
 
   update() {
