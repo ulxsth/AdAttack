@@ -1,3 +1,5 @@
+import { GameState } from "./states/GameState.js";
+
 export class Game {
   constructor() {
     this.canvas = document.createElement('canvas');
@@ -7,6 +9,8 @@ export class Game {
     this.canvas.style.backgroundColor = 'transparent';
 
     this.context = this.canvas.getContext('2d');
+
+    this.gameState = new GameState();
   }
 
   init() {
