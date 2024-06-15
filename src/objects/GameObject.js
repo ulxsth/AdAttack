@@ -41,5 +41,15 @@ export class GameObject {
     return isXOverlapped && isYOverlapped;
   };
 
+  /**
+   * オブジェクトが画面外に出ているかを検査する。
+   * @returns {boolean}
+   */
+  isOutOfScreen = () => {
+    const canvasWidth = this.game.canvas.width;
+    const canvasHeight = this.game.canvas.height;
+    return this.isCollidingWith({ x: 0, y: 0, width: canvasWidth, height: canvasHeight });
+  };
+
   destroy() { }
 }
