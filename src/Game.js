@@ -27,9 +27,8 @@ export class Game {
   init() {
     console.log("loaded!");
     document.body.appendChild(this.canvas);
-
-    this.gameState.registerObject(new PlayerShip(100, 100, 10, 10, 'blue', 100, 0));
-
+    const center = this.getCenterOfCanvas();
+    this.gameState.registerObject(new PlayerShip(center.x, center.y, 50, 50, 'blue', 100, 0));
     this.#render();
   }
 
@@ -66,6 +65,13 @@ export class Game {
     this.lastTime = now;
     return Math.floor(fps * 10) / 10;
   };
+
+  getCenterOfCanvas() {
+    return {
+      x: this.canvas.width / 2,
+      y: this.canvas.height / 2
+    };
+  }
 
   #render() {
     window.requestAnimationFrame(this.#draw.bind(this));
