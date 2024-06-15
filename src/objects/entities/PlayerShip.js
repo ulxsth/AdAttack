@@ -7,7 +7,7 @@ export class PlayerShip extends Entity {
   }
 
   update() {
-    const { width: canvasWidth, height: canvasHeight } = this.game.getCenterOfCanvas();
+    const { width: canvasWidth, height: canvasHeight } = this.game.getCanvasSize();
     const flags = this.interactionState.getAllFlags();
 
     // 移動
