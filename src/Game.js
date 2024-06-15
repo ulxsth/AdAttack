@@ -1,9 +1,8 @@
+import { gameStatus } from "./constants/GameStatus.js";
+import { EnemySummoner } from "./objects/entities/EnemySummoner.js";
+import { PlayerShip } from "./objects/entities/PlayerShip.js";
 import { GameState } from "./states/GameState.js";
 import { InteractionState } from "./states/InteractionState.js";
-import { PlayerShip } from "./objects/entities/PlayerShip.js";
-import { EnemyHead } from "./objects/entities/EnemyHead.js";
-import { EnemyPart } from "./objects/entities/EnemyPart.js";
-import { gameStatus } from "./constants/GameStatus.js";
 
 export class Game {
   // TODO: private にしたい
@@ -35,29 +34,16 @@ export class Game {
       new PlayerShip(center.x, center.y, 50, 50, 'blue', 100, 0, 15)
     );
 
-    // fot test: add enemy
-    const createEnemyAt = (x, y) => {
-      const enemyHead = new EnemyHead(x, y);
-      this.gameState.registerObject(enemyHead);
-
-      const enemyBody = new EnemyPart(50, 50, 'red', 100, 0, 15, 0, 0);
-      enemyHead.registerChild(enemyBody);
-      this.gameState.registerObject(enemyBody);
-
-      const enemyCloseBtn = new EnemyPart(15, 15, 'black', 100, 0, 15, 40, -5);
-      enemyHead.registerChild(enemyCloseBtn);
-      this.gameState.registerObject(enemyCloseBtn);
-    };
-
-    for (let i = 0; i < 3; i++) {
-      createEnemyAt(Math.random() * (window.innerWidth - 50), Math.random() * (window.innerHeight - 50));
-    }
-
+    const enemySummoner = EnemySummoner.getInstance();
+    enemySummoner.createSummonInterval(3, 3000);
     this.#render();
   }
 
   #draw() {
     if (this.gameState.gameStatus === gameStatus.gameover) {
+      const enemySummoner = EnemySummoner.getInstance();
+      enemySummoner.deleteSummonInterval();
+
       const center = this.getCenterOfCanvas();
       this.context.font = "120px serif";
       this.context.textAlign = "center";

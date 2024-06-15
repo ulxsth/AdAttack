@@ -18,6 +18,10 @@ export class GameState {
     return this.objects.find(object => object instanceof cls);
   }
 
+  getObjectsByClass(cls) {
+    return this.objects.filter(object => object instanceof cls);
+  }
+
   getAllObjects() {
     return this.objects;
   }

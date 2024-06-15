@@ -1,9 +1,10 @@
-import { GameObject } from "../GameObject.js";
+import { Entity } from "../Entity.js";
 import { EnemyBullet } from "../bullets/EnemyBullet.js";
+import { EnemyCloseBtn } from "./EnemyCloseBtn.js";
 
-export class EnemyHead extends GameObject {
-  constructor(x, y) {
-    super(x, y, 0, 0, "transparent", 0);
+export class EnemyHead extends Entity {
+  constructor(x, y, speed) {
+    super(x, y, 0, 0, "transparent", 0, 0, speed);
     this.children = [];
     this.shootIntervalId = setInterval(() => {
       this.shoot();
@@ -47,11 +48,22 @@ export class EnemyHead extends GameObject {
   }
 
   update() {
+    const closeBtns = this.children.filter((child) => child instanceof EnemyCloseBtn);
+    console.log(closeBtns);
+    if (closeBtns.length === 0) {
+      this.destroy();
+      return;
+    }
+
+    this.updateChildren();
+    const playerPos = this.gameState.getPlayerPosition();
+    this.faceTo(playerPos.x, playerPos.y);
+  }
+
+  updateChildren() {
     this.children.forEach((child) => {
       child.updatePosition(this.x, this.y);
     });
-    const playerPos = this.gameState.getPlayerPosition();
-    this.faceTo(playerPos.x, playerPos.y);
   }
 
   faceTo(x, y) {
