@@ -1,11 +1,8 @@
-import { GameState } from "./states/GameState.js";
-import { InteractionState } from "./states/InteractionState.js";
-import { PlayerShip } from "./objects/entities/PlayerShip.js";
-import { LeftEnemyHead } from "./objects/entities/enemies/LeftEnemyHead.js";
-import { RightEnemyHead } from "./objects/entities/enemies/RightEnemyHead.js";
-import { EnemyPart } from "./objects/entities/EnemyPart.js";
 import { gameStatus } from "./constants/GameStatus.js";
 import { EnemySummoner } from "./objects/entities/EnemySummoner.js";
+import { PlayerShip } from "./objects/entities/PlayerShip.js";
+import { GameState } from "./states/GameState.js";
+import { InteractionState } from "./states/InteractionState.js";
 
 export class Game {
   // TODO: private にしたい
@@ -37,15 +34,15 @@ export class Game {
       new PlayerShip(center.x, center.y, 50, 50, 'blue', 100, 0, 15)
     );
 
-    const EnemySummoner = EnemySummoner.getInstance();
-    EnemySummoner.createSummonInterval(3, 3000);
+    const enemySummoner = EnemySummoner.getInstance();
+    enemySummoner.createSummonInterval(3, 3000);
     this.#render();
   }
 
   #draw() {
     if (this.gameState.gameStatus === gameStatus.gameover) {
-      const EnemySummoner = EnemySummoner.getInstance();
-      EnemySummoner.deleteSummonInterval();
+      const enemySummoner = EnemySummoner.getInstance();
+      enemySummoner.deleteSummonInterval();
 
       const center = this.getCenterOfCanvas();
       this.context.font = "120px serif";

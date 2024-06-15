@@ -3,6 +3,7 @@ import { GameState } from "../../states/GameState.js";
 import { LeftEnemyHead } from "./enemies/LeftEnemyHead.js";
 import { RightEnemyHead } from "./enemies/RightEnemyHead.js";
 import { EnemyPart } from "./EnemyPart.js";
+import { EnemyCloseBtn } from "./EnemyCloseBtn.js";
 
 export class EnemySummoner {
   constructor() {
@@ -35,7 +36,7 @@ export class EnemySummoner {
       const targetX = canvasWidth / 5;
       const enemyHead = new LeftEnemyHead(y, targetX, 1);
       const enemyBody = new EnemyPart(50, 50, "red", 100, 0, 15, 0, 0);
-      const enemyCloseBtn = new EnemyPart(10, 10, "black", 100, 0, 15, 45, -5);
+      const enemyCloseBtn = new EnemyCloseBtn(10, 10);
       enemyHead.registerChild(enemyBody);
       enemyHead.registerChild(enemyCloseBtn);
       gameState.registerObject(enemyHead);
@@ -45,7 +46,7 @@ export class EnemySummoner {
       const targetX = canvasWidth * 4 / 5;
       const enemyHead = new RightEnemyHead(y, targetX, 1);
       const enemyBody = new EnemyPart(50, 50, "red", 100, 0, 15, 0, 0);
-      const enemyCloseBtn = new EnemyPart(10, 10, "black", 100, 0, 15, 45, -5);
+      const enemyCloseBtn = new EnemyCloseBtn(10, 10);
       enemyHead.registerChild(enemyBody);
       enemyHead.registerChild(enemyCloseBtn);
       gameState.registerObject(enemyHead);
