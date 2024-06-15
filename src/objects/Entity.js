@@ -10,7 +10,9 @@ export class Entity extends GameObject {
   damage(damage) {
     this.hp -= damage;
     if (this.hp <= 0) {
-      this.gameState.removeObject(this);
+      this.gameState.destroyObject(this);
     }
+
+    console.log(`${this.constructor.name} damaged: ${damage} (${this.hp} left)`);
   }
 }

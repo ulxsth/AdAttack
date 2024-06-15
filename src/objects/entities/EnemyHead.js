@@ -42,7 +42,7 @@ export class EnemyHead extends GameObject {
   shoot() {
     const spread = Math.random() / Math.PI;
     const direction = this.direction + spread;
-    const bullet = new EnemyBullet(this.x, this.y, direction);
+    const bullet = new EnemyBullet(this.x, this.y, direction, 10);
     this.gameState.registerObject(bullet);
   }
 
