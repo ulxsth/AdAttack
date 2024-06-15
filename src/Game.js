@@ -13,7 +13,7 @@ export class Game {
     this.context = this.canvas.getContext('2d');
 
     this.gameState = GameState.getInstance();
-    this.interactionState = new InteractionState();
+    this.interactionState = InteractionState.getInstance();
   }
 
   static getInstance() {
@@ -57,6 +57,3 @@ export class Game {
     window.requestAnimationFrame(this.#draw.bind(this));
   }
 }
-
-// Ensure there is only one instance of Game
-Game.instance = null;

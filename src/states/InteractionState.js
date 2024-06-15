@@ -11,6 +11,13 @@ export class InteractionState {
     };
   }
 
+  static getInstance() {
+    if (!InteractionState.instance) {
+      InteractionState.instance = new InteractionState();
+    }
+    return InteractionState.instance;
+  }
+
   /**
    * 特定のフラグが立っているかどうかを取得する。
    * @param {string} name フラグ名
