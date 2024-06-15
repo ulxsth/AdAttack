@@ -37,7 +37,7 @@ export class Game {
 
     // fot test: add enemy
     const createEnemyAt = (x, y) => {
-      const enemyHead = new EnemyHead(x, y);
+      const enemyHead = new EnemyHead(x, y, 10);
       this.gameState.registerObject(enemyHead);
 
       const enemyBody = new EnemyPart(50, 50, 'red', 100, 0, 15, 0, 0);

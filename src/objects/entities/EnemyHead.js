@@ -1,9 +1,9 @@
-import { GameObject } from "../GameObject.js";
+import { Entity } from "../Entity.js";
 import { EnemyBullet } from "../bullets/EnemyBullet.js";
 
-export class EnemyHead extends GameObject {
-  constructor(x, y) {
-    super(x, y, 0, 0, "transparent", 0);
+export class EnemyHead extends Entity {
+  constructor(x, y, speed) {
+    super(x, y, 0, 0, "transparent", 0, 0, speed);
     this.children = [];
     this.shootIntervalId = setInterval(() => {
       this.shoot();
