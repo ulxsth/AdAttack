@@ -26,11 +26,14 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 const registerAllEvent = async () => {
   const { handleKeyDown } = await import(chrome.runtime.getURL('src/events/handleKeyDown.js'));
   const { handleKeyUp } = await import(chrome.runtime.getURL('src/events/handleKeyUp.js'));
+  const { handleClick } = await import(chrome.runtime.getURL('src/events/handleClick.js'));
   window.addEventListener('keydown', handleKeyDown);
   window.addEventListener('keyup', handleKeyUp);
+  window.addEventListener('click', handleClick);
 }
 
 const unregisterAllEvent = () => {
   window.removeEventListener('keydown', handleKeyDown);
   window.removeEventListener('keyup', handleKeyUp);
+  window.removeEventListener('click', handleClick);
 }
