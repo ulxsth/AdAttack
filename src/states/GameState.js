@@ -6,6 +6,13 @@ export class GameState {
     this.gameStatus = gameStatus.playing;
   }
 
+  static getInstance() {
+    if (!GameState.instance) {
+      GameState.instance = new GameState();
+    }
+    return GameState.instance;
+  }
+
   get gameStatus() {
     return this._gameStatus;
   }
@@ -14,7 +21,7 @@ export class GameState {
     if (!Object.values(gameStatus).includes(status)) {
       throw new Error("Invalid game status");
     }
-    
+
     this._gameStatus = status;
   }
 

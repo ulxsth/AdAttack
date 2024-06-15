@@ -12,7 +12,7 @@ export class Game {
 
     this.context = this.canvas.getContext('2d');
 
-    this.gameState = new GameState();
+    this.gameState = GameState.getInstance();
     this.interactionState = new InteractionState();
   }
 
