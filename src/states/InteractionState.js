@@ -47,6 +47,7 @@ export class InteractionState {
   setFlag(flag, value) {
     if (this.interactFlags.hasOwnProperty(flag)) {
       this.interactFlags[flag] = value;
+      console.log(`${flag}: ${value}`);
     } else {
       throw new Error(`Invalid flag name: ${flag}`);
     }

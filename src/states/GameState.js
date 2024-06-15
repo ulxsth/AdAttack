@@ -13,6 +13,23 @@ export class GameState {
     return GameState.instance;
   }
 
+  getObjectByClass(cls) {
+    return this.objects.find(object => object instanceof cls);
+  }
+
+  getAllObjects() {
+    return this.objects;
+  }
+
+  registerObject(object) {
+    this.objects.push(object);
+  }
+
+  destroyObject(object) {
+    // TODO: 各オブジェクトのdestroyメソッドを呼び出す
+    this.objects = this.objects.filter(obj => obj !== object);
+  }
+
   get gameStatus() {
     return this._gameStatus;
   }

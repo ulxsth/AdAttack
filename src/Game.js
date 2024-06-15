@@ -1,5 +1,6 @@
 import { GameState } from "./states/GameState.js";
 import { InteractionState } from "./states/InteractionState.js";
+import { PlayerShip } from "./objects/entities/PlayerShip.js";
 
 export class Game {
   // TODO: private にしたい
@@ -26,7 +27,8 @@ export class Game {
   init() {
     console.log("loaded!");
     document.body.appendChild(this.canvas);
-
+    const center = this.getCenterOfCanvas();
+    this.gameState.registerObject(new PlayerShip(center.x, center.y, 50, 50, 'blue', 100, 0, 15));
     this.#render();
   }
 
@@ -37,6 +39,17 @@ export class Game {
     this.context.font = "20px Arial";
     this.context.fillText(this.gameState.gameStatus, 20, 20);
     this.context.fillText("FPS: " + this.#calculateFPS(), 20, 40);
+
+    if (this.gameState.gameStatus === "playing") {
+      this.gameState.getAllObjects().forEach(object => {
+        // 更新処理
+        object.update();
+
+        // 描画処理
+        this.context.fillStyle = object.color;
+        this.context.fillRect(object.x, object.y, object.width, object.height);
+      });
+    }
 
     this.#render();
   }
@@ -52,6 +65,20 @@ export class Game {
     this.lastTime = now;
     return Math.floor(fps * 10) / 10;
   };
+
+  getCanvasSize() {
+    return {
+      width: this.canvas.width,
+      height: this.canvas.height
+    };
+  }
+
+  getCenterOfCanvas() {
+    return {
+      x: this.canvas.width / 2,
+      y: this.canvas.height / 2
+    };
+  }
 
   #render() {
     window.requestAnimationFrame(this.#draw.bind(this));
