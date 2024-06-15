@@ -3,6 +3,11 @@
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action === "start") {
     (async () => {
+      const element = document.getElementById('game');
+      if (element) {
+        element.style.display = 'block';
+      }
+
       const { Game } = await import(chrome.runtime.getURL('src/Game.js'));
       const game = Game.getInstance();
       game.init();
@@ -13,7 +18,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 // ゲームを停止する（canvasの削除）
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action === "stop") {
-    var element = document.getElementById('game');
+    const element = document.getElementById('game');
     if (element) {
       element.style.display = 'none';
     }
