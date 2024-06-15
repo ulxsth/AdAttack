@@ -1,5 +1,6 @@
 import { GameState } from "./states/GameState.js";
 import { InteractionState } from "./states/InteractionState.js";
+import { PlayerShip } from "./objects/entities/PlayerShip.js";
 
 export class Game {
   // TODO: private にしたい
@@ -27,7 +28,7 @@ export class Game {
     console.log("loaded!");
     document.body.appendChild(this.canvas);
 
-    this.gameState.addObject(new PlayerShip(100, 100));
+    this.gameState.registerObject(new PlayerShip(100, 100, 10, 10, 'blue', 100, 0));
 
     this.#render();
   }
@@ -42,7 +43,12 @@ export class Game {
 
     if(this.gameState.gameStatus === "playing") {
       this.gameState.getAllObjects().forEach(object => {
-        object.draw(this.context);
+        // 更新処理
+        object.update();
+
+        // 描画処理
+        this.context.fillStyle = object.color;
+        this.context.fillRect(object.x, object.y, object.width, object.height);
       });
     }
 
