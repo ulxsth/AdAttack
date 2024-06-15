@@ -10,6 +10,7 @@ export class Game {
   }
 
   init() {
+    console.log("loaded!");
     document.body.appendChild(this.canvas);
 
     this._render();

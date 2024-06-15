@@ -1,3 +1,6 @@
-import { Game } from "./src/Game.js";
+(async () => {
+  const { Game } = await import(chrome.runtime.getURL('src/Game.js'));
+  const game = new Game();
+  game.init();
+})()
 
-const game = new Game();
