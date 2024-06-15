@@ -18,6 +18,6 @@ export class EnemyBullet extends Bullet {
   }
 
   destroy() {
-    this.gameState.destroyObject(this);
+    this.gameState.removeObject(this);
   }
 }

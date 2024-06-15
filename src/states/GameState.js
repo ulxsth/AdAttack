@@ -26,8 +26,7 @@ export class GameState {
     this.objects.push(object);
   }
 
-  destroyObject(object) {
-    // TODO: 各オブジェクトのdestroyメソッドを呼び出す
+  removeObject(object) {
     this.objects = this.objects.filter(obj => obj !== object);
   }
 

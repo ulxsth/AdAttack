@@ -9,7 +9,7 @@ export class PlayerBullet extends Bullet {
   update() {
     this.existTime--;
     if (this.existTime <= 0) {
-      this.gameState.destroyObject(this);
+      this.gameState.removeObject(this);
     }
   }
 }

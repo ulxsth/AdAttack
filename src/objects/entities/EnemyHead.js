@@ -61,6 +61,6 @@ export class EnemyHead extends GameObject {
   destroy() {
     clearInterval(this.shootIntervalId);
     this.destroyChildren();
-    this.gameState.destroyObject(this);
+    this.gameState.removeObject(this);
   }
 }
