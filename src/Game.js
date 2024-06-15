@@ -2,6 +2,7 @@ import { GameState } from "./states/GameState.js";
 import { InteractionState } from "./states/InteractionState.js";
 
 export class Game {
+  // TODO: private にしたい
   constructor() {
     this.canvas = document.createElement('canvas');
     this.canvas.width = window.innerWidth;
@@ -15,14 +16,21 @@ export class Game {
     this.interactionState = new InteractionState();
   }
 
+  static getInstance() {
+    if (!Game.instance) {
+      Game.instance = new Game();
+    }
+    return Game.instance;
+  }
+
   init() {
     console.log("loaded!");
     document.body.appendChild(this.canvas);
 
-    this._render();
+    this.#render();
   }
 
-  _draw() {
+  #draw() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     // for debug
@@ -30,10 +38,13 @@ export class Game {
     this.context.fillStyle = "white";
     this.context.fillText(this.gameState.gameStatus, 20, 20);
 
-    this._render();
+    this.#render();
   }
 
-  _render() {
-    window.requestAnimationFrame(this._draw.bind(this));
+  #render() {
+    window.requestAnimationFrame(this.#draw.bind(this));
   }
 }
+
+// Ensure there is only one instance of Game
+Game.instance = null;

@@ -18,5 +18,4 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       element.style.display = 'none';
     }
   }
-  console.log("test");
 });
