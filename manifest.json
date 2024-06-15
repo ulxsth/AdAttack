@@ -15,5 +15,15 @@
         "index.js"
       ]
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "src/*"
+      ]
+    }
   ]
 }
