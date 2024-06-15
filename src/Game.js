@@ -35,11 +35,23 @@ export class Game {
 
     // for debug
     this.context.font = "20px Arial";
-    this.context.fillStyle = "white";
     this.context.fillText(this.gameState.gameStatus, 20, 20);
+    this.context.fillText("FPS: " + this.#calculateFPS(), 20, 40);
 
     this.#render();
   }
+
+
+  #calculateFPS = () => {
+    let fps = 0;
+    const now = performance.now();
+    if (this.lastTime) {
+      const delta = (now - this.lastTime) / 1000;
+      fps = 1 / delta;
+    }
+    this.lastTime = now;
+    return Math.floor(fps * 10) / 10;
+  };
 
   #render() {
     window.requestAnimationFrame(this.#draw.bind(this));

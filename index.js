@@ -4,7 +4,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action === "start") {
     (async () => {
       const { Game } = await import(chrome.runtime.getURL('src/Game.js'));
-      const game = new Game();
+      const game = Game.getInstance();
       game.init();
     })()
   }
