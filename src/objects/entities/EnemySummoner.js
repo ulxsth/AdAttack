@@ -4,14 +4,14 @@ import { LeftEnemyHead } from "./enemies/LeftEnemyHead.js";
 import { RightEnemyHead } from "./enemies/RightEnemyHead.js";
 import { EnemyPart } from "./EnemyPart.js";
 
-export class EnemyFactory {
+export class EnemySummoner {
   constructor() {
     this.summonIntervalId = null;
   }
 
   static getInstance() {
     if (!this.instance) {
-      this.instance = new EnemyFactory();
+      this.instance = new EnemySummoner();
     }
     return this.instance;
   }
