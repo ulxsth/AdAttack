@@ -8,7 +8,7 @@ export class EnemyHead extends Entity {
     this.children = [];
     this.shootIntervalId = setInterval(() => {
       this.shoot();
-    }, 300);
+    }, 800);
   }
 
   /**
