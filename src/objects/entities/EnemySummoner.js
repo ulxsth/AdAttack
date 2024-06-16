@@ -30,13 +30,15 @@ export class EnemySummoner {
     const gameState = GameState.getInstance();
     const { width: canvasWidth, height: canvasHeight } = game.getCanvasSize();
     const direction = Math.random() > 0.5 ? 'left' : 'right';
+    const width = Math.random() * 50 + 50;
+    const height = Math.random() * 50 + 50;
     const y = Math.random() * canvasHeight;
 
     if (direction === 'left') {
       const targetX = canvasWidth / 5;
       const enemyHead = new LeftEnemyHead(y, targetX, 1);
-      const enemyBody = new EnemyPart(50, 50, "enemybody.png", 100, 0, 15, 0, 0);
-      const enemyCloseBtn = new EnemyCloseBtn(45, -5);
+      const enemyBody = new EnemyPart(width, height, "enemybody.png", 100, 0, 15, 0, 0);
+      const enemyCloseBtn = new EnemyCloseBtn(width-5, -5);
       enemyHead.registerChild(enemyBody);
       enemyHead.registerChild(enemyCloseBtn);
       gameState.registerObject(enemyHead);
@@ -45,8 +47,8 @@ export class EnemySummoner {
     } else {
       const targetX = canvasWidth * 4 / 5;
       const enemyHead = new RightEnemyHead(y, targetX, 1);
-      const enemyBody = new EnemyPart(50, 50, "enemybody.png", 100, 0, 15, 0, 0);
-      const enemyCloseBtn = new EnemyCloseBtn(45, -5);
+      const enemyBody = new EnemyPart(width, height, "enemybody.png", 100, 0, 15, 0, 0);
+      const enemyCloseBtn = new EnemyCloseBtn(width-5, -5);
       enemyHead.registerChild(enemyBody);
       enemyHead.registerChild(enemyCloseBtn);
       gameState.registerObject(enemyHead);
