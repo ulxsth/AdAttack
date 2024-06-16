@@ -25,7 +25,8 @@
         "<all_urls>"
       ],
       "resources": [
-        "src/*"
+        "src/*",
+        "assets/*"
       ]
     }
   ]
