@@ -1,14 +1,15 @@
 import { Game } from "../Game.js";
 import { GameState } from "../states/GameState.js";
 import { InteractionState } from "../states/InteractionState.js";
+import { ImageLoader } from "../utils/ImageLoader.js";
 
 export class GameObject {
-  constructor(x, y, width, height, color, direction) {
+  constructor(x, y, width, height, imgPath, direction) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
-    this.color = color;
+    this.img = null;
     this.direction = direction;
 
     // 各インスタンスへの参照を保持
@@ -17,7 +18,11 @@ export class GameObject {
     this.interactionState = InteractionState.getInstance();
   }
 
-  update() { }
+  async update() {
+    if (this.img === null) {
+      this.img = await ImageLoader.load(this.imgPath);
+    }
+  }
 
   /**
    * 重なっている部分があるかを検査する。

@@ -7,7 +7,8 @@ export class PlayerShip extends Entity {
     super(x, y, width, height, color, hp, direction, speed);
   }
 
-  update() {
+  async update() {
+    await super.update();
     const { width: canvasWidth, height: canvasHeight } = this.game.getCanvasSize();
     const flags = this.interactionState.getAllFlags();
 

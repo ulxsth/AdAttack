@@ -47,9 +47,11 @@ export class EnemyHead extends Entity {
     this.gameState.registerObject(bullet);
   }
 
-  update() {
+  async update() {
+    await super.update();
+
+    // 閉じるボタンがすべて消されていたら自分を消す
     const closeBtns = this.children.filter((child) => child instanceof EnemyCloseBtn);
-    console.log(closeBtns);
     if (closeBtns.length === 0) {
       this.destroy();
       return;

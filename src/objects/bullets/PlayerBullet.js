@@ -6,7 +6,7 @@ export class PlayerBullet extends Bullet {
     this.existTime = 3;
   }
 
-  update() {
+  async update() {
     this.existTime--;
     if (this.existTime <= 0) {
       this.gameState.removeObject(this);

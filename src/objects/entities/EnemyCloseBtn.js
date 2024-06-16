@@ -8,7 +8,8 @@ export class EnemyCloseBtn extends EnemyPart {
     super(10, 10, "black", 1, "right", 0, offsetX, offsetY);
   }
 
-  update() {
+  async update() {
+    await super.update();
     const gameState = GameState.getInstance();
     const playerBullets = gameState.getObjectsByClass(PlayerBullet);
     if (!playerBullets) return;
