@@ -3,8 +3,8 @@ import { Entity } from "../Entity.js";
 
 
 export class PlayerShip extends Entity {
-  constructor(x, y, width, height, color, hp, direction, speed) {
-    super(x, y, width, height, color, hp, direction, speed);
+  constructor(x, y, width, height, hp, direction, speed) {
+    super(x, y, width, height, "/assets/images/objects/playerShip.png", hp, direction, speed);
   }
 
   async update() {

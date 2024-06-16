@@ -1,8 +1,8 @@
 import { GameObject } from "./GameObject.js";
 
 export class Entity extends GameObject {
-  constructor(x, y, width, height, color, hp, direction, speed) {
-    super(x, y, width, height, color, direction);
+  constructor(x, y, width, height, imgPath, hp, direction, speed) {
+    super(x, y, width, height, imgPath, direction);
     this.hp = hp;
     this.speed = speed;
   }
