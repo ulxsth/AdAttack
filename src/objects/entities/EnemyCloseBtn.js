@@ -5,7 +5,7 @@ import { GameState } from "../../states/GameState.js";
 
 export class EnemyCloseBtn extends EnemyPart {
   constructor(offsetX, offsetY) {
-    super(10, 10, "enemyCloseBtn.png", 1, "right", 0, offsetX, offsetY);
+    super(20, 20, "enemyCloseBtn.png", 1, "right", 0, offsetX, offsetY);
   }
 
   async update() {
