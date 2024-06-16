@@ -35,7 +35,7 @@ export class EnemySummoner {
     if (direction === 'left') {
       const targetX = canvasWidth / 5;
       const enemyHead = new LeftEnemyHead(y, targetX, 1);
-      const enemyBody = new EnemyPart(50, 50, "red", 100, 0, 15, 0, 0);
+      const enemyBody = new EnemyPart(50, 50, "enemybody.png", 100, 0, 15, 0, 0);
       const enemyCloseBtn = new EnemyCloseBtn(45, -5);
       enemyHead.registerChild(enemyBody);
       enemyHead.registerChild(enemyCloseBtn);
@@ -45,7 +45,7 @@ export class EnemySummoner {
     } else {
       const targetX = canvasWidth * 4 / 5;
       const enemyHead = new RightEnemyHead(y, targetX, 1);
-      const enemyBody = new EnemyPart(50, 50, "red", 100, 0, 15, 0, 0);
+      const enemyBody = new EnemyPart(50, 50, "enemybody.png", 100, 0, 15, 0, 0);
       const enemyCloseBtn = new EnemyCloseBtn(45, -5);
       enemyHead.registerChild(enemyBody);
       enemyHead.registerChild(enemyCloseBtn);

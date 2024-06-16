@@ -35,7 +35,7 @@ export class Game {
     );
 
     const enemySummoner = EnemySummoner.getInstance();
-    // enemySummoner.createSummonInterval(3, 3000);
+    enemySummoner.createSummonInterval(3, 3000);
     this.#render();
   }
 

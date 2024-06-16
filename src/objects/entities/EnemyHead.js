@@ -4,7 +4,7 @@ import { EnemyCloseBtn } from "./EnemyCloseBtn.js";
 
 export class EnemyHead extends Entity {
   constructor(x, y, speed) {
-    super(x, y, 0, 0, "transparent", 0, 0, speed);
+    super(x, y, 0, 0, "", 0, 0, speed);
     this.children = [];
     this.shootIntervalId = setInterval(() => {
       this.shoot();

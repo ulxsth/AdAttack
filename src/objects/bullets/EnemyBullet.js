@@ -3,7 +3,7 @@ import { PlayerShip } from "../entities/PlayerShip.js";
 
 export class EnemyBullet extends Bullet {
   constructor(x, y, direction, damage) {
-    super(x, y, 10, 10, "red", direction, damage, 5);
+    super(x, y, 10, 10, "enemyBullet.png", direction, damage, 5);
   }
 
   async update() {
