@@ -3,11 +3,11 @@ import { Entity } from "../Entity.js";
 
 
 export class PlayerShip extends Entity {
-  constructor(x, y, width, height, color, hp, direction, speed) {
-    super(x, y, width, height, color, hp, direction, speed);
+  constructor(x, y, width, height, hp, direction, speed) {
+    super(x, y, width, height, "playerShip.png", hp, direction, speed);
   }
 
-  update() {
+  async update() {
     const { width: canvasWidth, height: canvasHeight } = this.game.getCanvasSize();
     const flags = this.interactionState.getAllFlags();
 
@@ -24,6 +24,8 @@ export class PlayerShip extends Entity {
     if (flags.right && this.x + this.speed + this.width <= canvasWidth) {
       this.x += this.speed;
     }
+
+    await super.update();
   }
 
   destroy() {

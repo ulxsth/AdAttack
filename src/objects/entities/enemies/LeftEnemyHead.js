@@ -8,7 +8,8 @@ export class LeftEnemyHead extends EnemyHead {
     this.speed = speed;
   }
 
-  update() {
+  async update() {
+    await super.update();
     const closeBtns = this.children.filter((child) => child instanceof EnemyCloseBtn);
     console.log(closeBtns);
     if (closeBtns.length === 0) {

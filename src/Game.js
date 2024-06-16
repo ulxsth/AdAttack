@@ -31,7 +31,7 @@ export class Game {
     document.body.appendChild(this.canvas);
     const center = this.getCenterOfCanvas();
     this.gameState.registerObject(
-      new PlayerShip(center.x, center.y, 50, 50, 'blue', 100, 0, 15)
+      new PlayerShip(center.x, center.y, 50, 50, 100, 0, 15)
     );
 
     const enemySummoner = EnemySummoner.getInstance();
@@ -67,8 +67,11 @@ export class Game {
         object.update();
 
         // 描画処理
-        this.context.fillStyle = object.color;
-        this.context.fillRect(object.x, object.y, object.width, object.height);
+        // this.context.fillStyle = object.color;
+        // this.context.fillRect(object.x, object.y, object.width, object.height);
+        if (object.img) {
+          this.context.drawImage(object.img, object.x, object.y, object.width, object.height);
+        }
       });
     }
 
