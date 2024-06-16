@@ -10,6 +10,7 @@ export class GameObject {
     this.width = width;
     this.height = height;
     this.img = null;
+    this.imgPath = imgPath;
     this.direction = direction;
 
     // 各インスタンスへの参照を保持

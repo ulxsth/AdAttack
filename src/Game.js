@@ -67,8 +67,11 @@ export class Game {
         object.update();
 
         // 描画処理
-        this.context.fillStyle = object.color;
-        this.context.fillRect(object.x, object.y, object.width, object.height);
+        // this.context.fillStyle = object.color;
+        // this.context.fillRect(object.x, object.y, object.width, object.height);
+        if (object.img) {
+          this.context.drawImage(object.img, object.x, object.y, object.width, object.height);
+        }
       });
     }
 
