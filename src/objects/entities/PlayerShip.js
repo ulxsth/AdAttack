@@ -8,7 +8,6 @@ export class PlayerShip extends Entity {
   }
 
   async update() {
-    await super.update();
     const { width: canvasWidth, height: canvasHeight } = this.game.getCanvasSize();
     const flags = this.interactionState.getAllFlags();
 
@@ -25,6 +24,8 @@ export class PlayerShip extends Entity {
     if (flags.right && this.x + this.speed + this.width <= canvasWidth) {
       this.x += this.speed;
     }
+
+    await super.update();
   }
 
   destroy() {

@@ -31,7 +31,7 @@ export class Game {
     document.body.appendChild(this.canvas);
     const center = this.getCenterOfCanvas();
     this.gameState.registerObject(
-      new PlayerShip(center.x, center.y, 50, 50, 'blue', 100, 0, 15)
+      new PlayerShip(center.x, center.y, 50, 50, 100, 0, 15)
     );
 
     const enemySummoner = EnemySummoner.getInstance();
